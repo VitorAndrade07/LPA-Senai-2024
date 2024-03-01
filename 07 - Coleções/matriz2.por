@@ -1,38 +1,58 @@
 programa
 {
-	inclua biblioteca Util --> j
+	inclua biblioteca Util --> u
 	inclua biblioteca Matematica --> mat
+
 	funcao inicio()
 	{
-		real coordenadas[][]= { { 24.5, 30.6 }, {30.07, -75.0}, {40.0, 12.0}, {16.0, -45.6} }
-		para( inteiro i = 0; i < j.numero_linhas(coordenadas) ; i++)
-		{
-			para ( inteiro p = 0; p < j.numero_colunas(coordenadas); p++ )
-				coordenadas[i][p] = mat.arredondar(j.sorteia(-3000,3000), 2)/100	
+		real coordenadas [5][2] //Linhas (5) = {24.0, 15.0}, {13.2,-45.6}... Colunas (2) = 24.0 e 15.0
 
-		}
-		exibir(coordenadas)
+		preencher (coordenadas)
+		exibir (coordenadas)
 	}
- 
-	funcao exibir(real coordenadas[][])
+
+	funcao preencher (real coordenadas[][]) {
+		para (inteiro i = 0; i < u.numero_linhas(coordenadas); i++)
+		{
+			para (inteiro j = 0; j < u.numero_colunas(coordenadas); j++){
+				se (j == 0){
+					coordenadas[i][j] = mat.arredondar (u.sorteia(-9000, 9000), 2)/100.0//2= arredondar
+				} senao {
+					coordenadas [i][j] = mat.arredondar(u.sorteia(-18000, 18000), 2)/100.0
+				}
+			}
+		}
+	}
+	
+	funcao exibir (real coordenadas[][])
 	{
-		para( inteiro i = 0; i < j.numero_linhas(coordenadas) ; i++)
+		escreva("Latitude\tLongitude\n")
+		escreva ("========\t=========\n")
+		para (inteiro i = 0; i < u.numero_linhas(coordenadas); i++)
 		{
-			para ( inteiro p = 0; p < j.numero_colunas(coordenadas); p++ )
-				escreva(coordenadas[i][p], " ")	
- 
-			escreva("\n")
+			para (inteiro j = 0; j < u.numero_colunas(coordenadas); j++){
+				real coordenada = coordenadas [i][j]
+				se ( coordenadas[i][j] >= 0.0 ){
+					escreva (" ", coordenadas[i][j], "\t\t")
+				}senao{
+				escreva (coordenadas[i][j], "\t\t")
+				}
+				se (coordenadas [i][j] < 10.0 e coordenadas [i][j]> -10.0){
+				escreva (" ")
+					
+					}
+			}
+			escreva ("\n")
 		}
-
 	}
+	
 }
-
 /* $$$ Portugol Studio $$$ 
  * 
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 661; 
+ * @POSICAO-CURSOR = 917; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
